@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import useFetchData from '@/hooks/use-fetch-data'
+import { ApiResponseFlightTracker } from "@/types/api-response-flight-tracker";
 
 export default function Home() {
   const {
@@ -24,6 +25,7 @@ export default function Home() {
           {!loading && (
             <div>
               <h2>Data</h2>
+              {data.map((flight: ApiResponseFlightTracker) => (<p key={flight.hex}>{flight.hex}</p>))}
             </div>
           )}
         </div>
