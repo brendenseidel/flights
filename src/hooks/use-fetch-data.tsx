@@ -10,11 +10,11 @@ const useFetchData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const { data: response } = await axios.get(`${process.env.API_PATH}`);
-        const { data: response }: any  = await axios.get('http://localhost:3001/response');
-        console.log(response)
-        response.forEach((flight: unknown) => ApiResponseFlightTracker.parse(flight));
-        setData(response);
+        console.log('hello')
+        const { data: response } = await axios.get(process.env.NEXT_PUBLIC_API_URL as string);
+        const flightData = response.response ? response.response : response;
+        flightData.forEach((flight: unknown) => ApiResponseFlightTracker.parse(flight));
+        setData(flightData);
       } catch (error) {
         console.error(error)
       }
